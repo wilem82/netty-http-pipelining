@@ -238,6 +238,12 @@ public class HttpPipeliningHandler extends ChannelDuplexHandler {
     }
 
     @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        inactive = false;
+        super.channelActive(ctx);
+    }
+
+    @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         cleanup();
         inactive = true;
